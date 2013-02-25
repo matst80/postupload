@@ -28,11 +28,7 @@
     <body>
         <div class="app">
             <h1>Uploader</h1>
-            
-            <div id="deviceready">
-                <div class="status pending blink">Connecting to Device</div>
-                <div class="status complete blink hide">
-                    <p>
+             <p>
                 <label>Title</label>
                 <input type="text" id="title" />
             </p>
@@ -42,7 +38,11 @@
             </p>
             <button id="doupload">Publish</button>
             <img src="" id="theimg" style="display:none" />
-                </div>
+            <div id="deviceready">
+                <p class="status pending blink">Connecting to Device</p>
+                <p class="status complete blink hide">Har connect</p>
+                   
+                
             </div>
         </div>
         <script type="text/javascript" src="phonegap.js"></script>
