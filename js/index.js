@@ -2,7 +2,7 @@
 var app = {
     ar:function(cmd,data,cb,err) {
         var request = new XMLHttpRequest();
-        request.open("GET", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd, true);
+        request.open("POST", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd, true);
         request.onreadystatechange = function() {//Call a function when the state changes.
             if (request.readyState == 4) {
                 if (request.status == 200 || request.status == 0) {
@@ -12,7 +12,7 @@ var app = {
             }
         }
         console.log("running:"+cmd);
-        request.send();
+        request.send(data);
     },
     baseurl:'http://blickevent7.wd6.se',
     initialize: function() {
@@ -20,6 +20,7 @@ var app = {
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
+        document.getElementById('doupload').addEventListener('click',this.publish,false);
     },
     publish:function() {
         alert('publish');
@@ -43,7 +44,7 @@ var app = {
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
 
-        document.getElementById('theimg').addEventListener('click',this.publish,false)
+        
 
         
         var pictureSource=navigator.camera.PictureSourceType;
