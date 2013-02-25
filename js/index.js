@@ -1,38 +1,48 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+
 var app = {
+    ar:function(cmd,data,cb,err) {
+        var request = new XMLHttpRequest();
+        request.open("GET", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd, true);
+        request.onreadystatechange = function() {//Call a function when the state changes.
+            if (request.readyState == 4) {
+                if (request.status == 200 || request.status == 0) {
+                    var data = JSON.parse(request.responseText);
+                    cb(data);
+                }
+            }
+        }
+        console.log("running:"+cmd);
+        request.send();
+    },
+    baseurl:'http://blickevent7.wd6.se',
     initialize: function() {
         this.bind();
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
     },
+    publish:function() {
+        alert('publish');
+        
+        app.ar('Publish',{username:"testuser",password:"test100%",title:document.getElementById('title').value,body:document.getElementById('bodytxt').value,imgdata:app.lastimg,lat:"16",lng:"18",17},function(d) {
+            console.log(d);
+            alert(d.PageId);
+        });
+    },
     deviceready: function() {
         // This is an event handler function, which means the scope is the event.
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
+
+        document.getElementById('theimg').addEventListener('click',this.publish,false)
+
         
         var pictureSource=navigator.camera.PictureSourceType;
         var destinationType=navigator.camera.DestinationType;
 
         navigator.camera.getPicture(function(imageData) {
             alert('fått bild');
+            app.lastimg = imageData;
             var smallImage = document.getElementById('theimg');
             smallImage.style.display = 'block';
             smallImage.src = "data:image/jpeg;base64," + imageData;
