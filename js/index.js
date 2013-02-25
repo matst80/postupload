@@ -32,12 +32,13 @@ var app = {
         var destinationType=navigator.camera.DestinationType;
 
         navigator.camera.getPicture(function(imageData) {
+            alert('fått bild');
             var smallImage = document.getElementById('theimg');
             smallImage.style.display = 'block';
             smallImage.src = "data:image/jpeg;base64," + imageData;
 
         }, function() {
-
+            alert('nejdu');
         }, { quality: 90, destinationType: destinationType.DATA_URL });
 
     },
