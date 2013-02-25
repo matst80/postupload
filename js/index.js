@@ -2,17 +2,32 @@
 var app = {
     ar:function(cmd,data,cb,err) {
         var request = new XMLHttpRequest();
-        request.open("POST", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd, true);
-        request.onreadystatechange = function() {//Call a function when the state changes.
-            if (request.readyState == 4) {
-                if (request.status == 200 || request.status == 0) {
-                    var data = JSON.parse(request.responseText);
-                    cb(data);
-                }
-            }
-        }
-        console.log("running:"+cmd);
-        request.send(data);
+        //fileUpload = request.upload;
+        request.onload = function() {
+            console.log(request);
+
+        };
+                request.onerror = function() {
+            console.log('error',request);
+
+        };
+         /*
+         fileUpload.addEventListener("progress", function (e, a) {
+                    console.log(this,e,a);
+                    
+                }, false);
+                fileUpload.addEventListener("loadend",function(e) {
+                    console.log(request.responseText);
+                        
+                },false);
+        fileUpload.addEventListener("error", function (e, a) {
+                    //console.log(arguments);
+                    console.log('error',arguments,request);
+                }, false);*/
+        console.log("running:"+cmd,request);
+        request.open("POST", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd);
+        request.setRequestHeader('Content-type', 'html/json');
+        request.send(JSON.stringify(data));
     },
     baseurl:'http://blickevent7.wd6.se',
     initialize: function() {
