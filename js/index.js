@@ -27,6 +27,19 @@ var app = {
         // This is an event handler function, which means the scope is the event.
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
+        
+        var pictureSource=navigator.camera.PictureSourceType;
+        var destinationType=navigator.camera.DestinationType;
+
+        navigator.camera.getPicture(function(imageData) {
+            var smallImage = document.getElementById('theimg');
+            smallImage.style.display = 'block';
+            smallImage.src = "data:image/jpeg;base64," + imageData;
+
+        }, function() {
+
+        }, { quality: 90, destinationType: destinationType.DATA_URL });
+
     },
     report: function(id) {
         // Report the event in the console
