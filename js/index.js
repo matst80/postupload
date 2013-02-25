@@ -24,10 +24,19 @@ var app = {
     publish:function() {
         alert('publish');
         
-        app.ar('Publish',{username:"testuser",password:"test100%",title:document.getElementById('title').value,body:document.getElementById('bodytxt').value,imgdata:app.lastimg,lat:"16",lng:"18",17},function(d) {
-            console.log(d);
-            alert(d.PageId);
-        });
+        app.ar('Publish',{
+                username:"testuser",
+                password:"test100%",
+                title:document.getElementById('title').value,
+                body:document.getElementById('bodytxt').value,
+                imgdata:app.lastimg,
+                lat:"16",
+                lng:"18",
+                blog:17
+            },function(d) {
+                console.log(d);
+                alert(d.PageId);
+            });
     },
     deviceready: function() {
         // This is an event handler function, which means the scope is the event.
