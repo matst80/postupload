@@ -151,6 +151,7 @@ var app = {
         if (!app.username)
             cb(false);
         this.ar('TestUser',{username:app.username,password:app.password},function(d) {
+            con.log(d);
             cb(d.d);
         },function() {
             cb(false);
