@@ -38,10 +38,16 @@ body {
 	padding: 0;
 	min-height: 100%;
 }
+h1 {
+	font-weight: 300;
+	color: #4daf7c;
+	padding-left: 10px;
+	margin-top: 0;
+}
 .wrapper {
 	max-width: 100%;
 	border-radius: 6px;
-	background: #FCFCFC;
+	background: #FFF;
 	padding-top: 10px;
 	min-height: 100%;
 	margin-bottom: 6px;
@@ -58,18 +64,13 @@ input[type=text] {
 	width: 80%;
 	margin-left: 10px;
 	border: 1px solid #e5d4c2;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	padding: 10px;
 	display: block;
-	margin-bottom: 10px;
 }
 textarea {
 	width: 100%;
 	padding: 10px;
 	border: 0;
-	border-top: 2px solid #e5d4c2;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	height: 1024px;
@@ -125,10 +126,11 @@ label {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	padding: 8px 15px;
+	padding: 8px 10px;
 	-webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.40);
 	-moz-box-shadow:    inset 0px 1px 0px rgba(255, 255, 255, 0.40);
 	box-shadow:         inset 0px 1px 0px rgba(255, 255, 255, 0.40);
+	font-size: 14px;
 }
 .publish {
 	border: 1px solid #c54a28;
@@ -148,7 +150,7 @@ label {
 	height: 15px;
 	display: block;
 	float: left;
-	margin-top: 5px;
+	margin-top: 3px;
 }
 .upload span:before {
 	content: " ";
@@ -158,5 +160,11 @@ label {
 	display: block;
 	float: left;
 	margin-top: 3px;
-	margin-right: 10px;
+}
+
+.inputwrap {
+	background: #EEE;
+	border-left: 3px solid #4daf7c;
+	padding: 10px 0;
+	margin-bottom: 10px;
 }
