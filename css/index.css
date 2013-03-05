@@ -23,95 +23,134 @@
     -webkit-user-select: text;                  /* prevent copy paste, to allow, change 'none' to 'text' */
 }
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+
+* {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+html {
+	margin: 0;
+	padding: 0;
+}
 body {
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:16px;
-    height:100%;
-    margin:0px;
-    padding:20px;
-    
-    width:100%;
+	background: #000;
+	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 0;
+	min-height: 100%;
 }
-
-input,textarea {
-    font-size:16px;
+.wrapper {
+	max-width: 100%;
+	border-radius: 6px;
+	background: #FCFCFC;
+	padding-top: 10px;
+	min-height: 100%;
+	margin-bottom: 6px;
 }
-
-/* Portrait layout (default) */
-.app {
-    
+.content {
+	padding-bottom: 50px;
 }
-
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-      
-    }
+input[type=text] {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	background: #FFF;
+	border: 0;
+	height: 45px;
+	width: 80%;
+	margin-left: 10px;
+	border: 1px solid #e5d4c2;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 10px;
+	display: block;
+	margin-bottom: 10px;
 }
-
-h1 {
-    font-size:24px;
-    font-weight:normal;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:center;
-    text-transform:uppercase;
+textarea {
+	width: 100%;
+	padding: 10px;
+	border: 0;
+	border-top: 2px solid #e5d4c2;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	height: 1024px;
 }
-
 label {
-    display:block;
+	font-weight: 400;
+	font-size: 16px;
+	display: block;
 }
 
-input,textarea {
-    width:100%;    
-
+.footer {
+	background: #000;
+	width: 100%;
+	
+	position: fixed;
+	bottom: 0;
+}
+.innerfoot {
+	height: 60px;
+	padding: 10px;
+	background: #f8f3f0;
+	-webkit-border-radius: 0 0 6px 6px;
+	-moz-border-radius: 0 0 6px 6px;
+	border-radius: 0 0 6px 6px;
+}
+.left {
+	width: 47%;
+	float: left;
+}
+.right {
+	float: right;
+	width: 47%;
 }
 
-.status {
-    background-color:#333333;
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
+.media {
+	background: #4daf7c;
+	border: 1px solid #4daf7c;
 }
-
-.status.complete {
-    background-color:#4B946A;
+.button {
+	text-align: center;
+	color: #FFF;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 8px 15px;
+	-webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.40);
+	-moz-box-shadow:    inset 0px 1px 0px rgba(255, 255, 255, 0.40);
+	box-shadow:         inset 0px 1px 0px rgba(255, 255, 255, 0.40);
 }
-
-.hide {
-    display:none;
+.publish {
+	border: 1px solid #c54a28;
+	background: #ea704b; /* Old browsers */
+	background: -moz-linear-gradient(top, #ea704b 0%, #e45e39 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ea704b), color-stop(100%,#e45e39)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ea704b 0%,#e45e39 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ea704b 0%,#e45e39 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ea704b 0%,#e45e39 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ea704b 0%,#e45e39 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea704b', endColorstr='#e45e39',GradientType=0 ); /* IE6-9 */
 }
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
+.publish span:before {
+	content: " ";
+	background: url(../img/arrow.png) left center no-repeat;
+	width: 15px;
+	height: 15px;
+	display: block;
+	float: left;
+	margin-top: 5px;
 }
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
+.upload span:before {
+	content: " ";
+	background: url(../img/upload-cloud.png) left center no-repeat;
+	width: 22px;
+	height: 15px;
+	display: block;
+	float: left;
+	margin-top: 3px;
+	margin-right: 10px;
 }
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
+	
