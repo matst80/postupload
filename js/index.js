@@ -31,11 +31,11 @@ var app = {
                     //console.log(arguments);
                     console.log('error',arguments,request);
                 }, false);*/
-        console.log("running:"+cmd,request);
+        con.log("running:"+cmd,request);
         request.open("POST", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd);
         request.setRequestHeader('Content-type', 'html/json');
         var data = JSON.stringify(data);
-        console.log(data);
+        con.log(data);
         request.send(data);
     },
     baseurl:'http://blickevent7.wd6.se',
@@ -90,8 +90,8 @@ var app = {
         var destinationType=navigator.camera.DestinationType;
         con.log(destinationType);
         navigator.camera.getPicture(function(imageData) {
-            alert('fått bild');
-            app.lastimg = imageData;
+            //alert('fått bild');
+            //app.lastimg = imageData;
             var smallImage = document.getElementById('theimg');
             smallImage.style.display = 'block';
             smallImage.src = "data:image/jpeg;base64," + imageData;
@@ -107,8 +107,9 @@ var app = {
                 con.log(xhr.responseText);
             });
             fileUpload.addEventListener("error", function (e, a) {
-                con.log('error',e);
+                con.log('error',arguments);
             });
+            con.
             xhr.open("POST", app.baseurl+ "/Userfiles/?upFile=/Userfiles/mobilefiles/");
             xhr.setRequestHeader('X-Filename', 'test22.jps');
             xhr.send(imageData);
