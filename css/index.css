@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -23,7 +24,6 @@
     -webkit-user-select: text;                  /* prevent copy paste, to allow, change 'none' to 'text' */
 }
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
 * {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -87,13 +87,13 @@ label {
 .footer {
 	background: #000;
 	width: 100%;
-	
 	position: fixed;
 	bottom: 0;
 }
 .innerfoot {
 	height: 60px;
 	padding: 10px;
+	width: 100%;
 	background: #f8f3f0;
 	-webkit-border-radius: 0 0 6px 6px;
 	-moz-border-radius: 0 0 6px 6px;
@@ -111,6 +111,10 @@ label {
 .media {
 	background: #4daf7c;
 	border: 1px solid #4daf7c;
+}
+.error {
+	background: #e15230;
+	border: 1px solid #c43515;
 }
 .button {
 	text-align: center;
