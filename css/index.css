@@ -116,7 +116,27 @@ label {
 	float: right;
 	width: 47%;
 }
-
+img.loading {
+    opacity: 0.5;
+}
+img.loading:after {
+    position: absolute;
+    display:block;
+    content: 'Laddar upp bilden...';
+    background-color: rgba(0,0,0,0.6);
+    color:#fff;
+    top:10px;
+    left:10px;
+}
+img.error:after {
+    position: absolute;
+    display:block;
+    content: 'Kunde inte ladda upp bilden';
+    background-color: rgba(255,0,0,0.6);
+    color:#fff;
+    top:10px;
+    left:10px;
+}
 .media {
 	background: #4daf7c;
 	border: 1px solid #4daf7c;

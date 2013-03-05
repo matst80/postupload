@@ -67,7 +67,7 @@ var app = {
             
             smallImage.src = imageURI;
             smallImage.style.display = 'block';
-            smallImage.className = 'appeardown';
+            smallImage.className = 'appeardown loading';
 
 
             app.imgElm.className = 'button media upload loading';
@@ -88,9 +88,11 @@ var app = {
                 con.log(r);
                 app.imgElm.className = 'button media upload';
                 if (app.postid && app.postid>0)
-                    ar('BindImage',{},function() {con.log('image bound');},function() {con.log('imagebindfail');})
+                    ar('BindImage',{},function() {con.log('image bound');},function() {con.log('imagebindfail');});
+                smallImage.className = 'appeardown';
                 app.lastimg = r.response;
             }, function(e) {
+                smallImage.className = 'appeardown error';
                 con.log(e);
                 app.imgElm.className = 'button media upload error';
             }, options);
