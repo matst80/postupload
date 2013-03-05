@@ -9,32 +9,20 @@ var con = {
 var app = {
     ar:function(cmd,data,cb,err) {
         var request = new XMLHttpRequest();
-        //fileUpload = request.upload;
+        
         request.onload = function() {
             con.log(request);
-            document.getElementById('title').value = '';
-            document.getElementById('description').value = '';
-            document.getElementById('imgpreview').style.display = 'none';
+            if (cb)
+                cb();
 
         };
-                request.onerror = function() {
-            con.log('error',request);
-
+        request.onerror = function() {
+            con.log(request);
+            if (err)
+                err();
         };
-         /*
-         fileUpload.addEventListener("progress", function (e, a) {
-                    console.log(this,e,a);
-                    
-                }, false);
-                fileUpload.addEventListener("loadend",function(e) {
-                    console.log(request.responseText);
-                        
-                },false);
-        fileUpload.addEventListener("error", function (e, a) {
-                    //console.log(arguments);
-                    console.log('error',arguments,request);
-                }, false);*/
-        con.log("running:"+cmd,request);
+        
+
         request.open("POST", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd);
         request.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
         var data = JSON.stringify(data);
@@ -48,6 +36,12 @@ var app = {
 
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
+
+
+        document.getElementById('tgldebug').addEventListener('click',function() {
+            var el = document.getElementById('info');
+            el.style.display=(el.style.display=='block')?'none':'block';
+        },false);
         this.imgElm = document.getElementById('selectimage');
         document.getElementById('selectimage').addEventListener('click',this.selectImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
@@ -93,9 +87,8 @@ var app = {
 
             
         }, function() {
-            alert('nejdu');
-        }, { quality: 90, destinationType: navigator.camera.DestinationType.FILE_URI,
-                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }); //, destinationType: destinationType.DATA_URL
+            alert('Filen kunde inte laddas upp');
+        }, { quality: 90, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }); //, destinationType: destinationType.DATA_URL
     },
     publish:function() {
         alert('publish');
@@ -115,7 +108,12 @@ var app = {
                 blog:17
             },function(d) {
                 con.log(d);
+                document.getElementById('title').value = '';
+                document.getElementById('description').value = '';
+                document.getElementById('imgpreview').style.display = 'none';
                 app.postid = d.PageId;
+            },function() {
+                alert('Något gick fel vid publiseringen');
             }); 
         }
 
