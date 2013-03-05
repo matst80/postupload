@@ -49,6 +49,34 @@ var app = {
         document.getElementById('selfile').addEventListener('click',this.selectImage,false);
         document.getElementById('selcamera').addEventListener('click',this.cameraImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
+
+        var loginbtn = document.getElementById('dologin');
+        
+        loginbtn.addEventListener('click',function() {
+                username = app.username = document.getElementById('username').value;
+                password = app.password = document.getElementById('password').value;
+
+                document.getElementById('login').className = 'loading';
+                this.testuser(function(ok) {
+                    if (!ok)
+                        document.getElementById('login').className = '';
+                    else
+                    {
+                        window.localStorage.getItem("username",app.username);
+                        window.localStorage.getItem("password",app.password);
+                    }
+                });
+        },false);
+        app.testuser(function(ok) {
+            if (ok)
+            {
+                con.log({username:username});
+            }
+            else {
+                document.getElementById('login').className = '';
+            }
+        });
+
         navigator.geolocation.getCurrentPosition(function(a) {
             app.lat = a.coords.latitude;
             app.lng = a.coords.longitude;
@@ -161,32 +189,7 @@ var app = {
         
         app.username = window.localStorage.getItem("username");
         app.password = window.localStorage.getItem("password");
-        var loginbtn = document.getElementById('dologin');
         
-        loginbtn.addEventListener('click',function() {
-                username = app.username = document.getElementById('username').value;
-                password = app.password = document.getElementById('password').value;
-
-                document.getElementById('login').className = 'loading';
-                this.testuser(function(ok) {
-                    if (!ok)
-                        document.getElementById('login').className = '';
-                    else
-                    {
-                        window.localStorage.getItem("username",app.username);
-                        window.localStorage.getItem("password",app.password);
-                    }
-                });
-        },false);
-        app.testuser(function(ok) {
-            if (ok)
-            {
-                con.log({username:username});
-            }
-            else {
-                document.getElementById('login').className = '';
-            }
-        });
     }
 };
 
