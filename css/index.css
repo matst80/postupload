@@ -22,10 +22,6 @@
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
     -webkit-user-select: text;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-}
-
-
-* {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
@@ -116,6 +112,13 @@ label {
 	background: #e15230;
 	border: 1px solid #c43515;
 }
+.loading {
+	opacity: 0.5;
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+}
 .button {
 	text-align: center;
 	color: #FFF;
@@ -157,4 +160,3 @@ label {
 	margin-top: 3px;
 	margin-right: 10px;
 }
-	
