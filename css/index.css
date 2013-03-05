@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -131,6 +132,15 @@ div.loading {
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 	filter: alpha(opacity=50);
     background: #ccc;
+}
+.loading span:before {
+	content: " ";
+	background: url(../img/loading.gif) left center no-repeat;
+	width: 15px;
+	height: 15px;
+	display: block;
+	float: left;
+	margin-top: 3px;
 }
 .button {
 	text-align: center;
