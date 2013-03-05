@@ -27,7 +27,9 @@ var app = {
         console.log("running:"+cmd,request);
         request.open("POST", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd);
         request.setRequestHeader('Content-type', 'html/json');
-        request.send(JSON.stringify(data));
+        var data = JSON.stringify(data);
+        console.log(data);
+        request.send(data);
     },
     baseurl:'http://blickevent7.wd6.se',
     initialize: function() {
@@ -45,7 +47,7 @@ var app = {
                 password:"test100%",
                 title:document.getElementById('title').value,
                 body:document.getElementById('bodytxt').value,
-                imgdata:app.lastimg,
+                imgdata:app.lastimg||'',
                 lat:"16",
                 lng:"18",
                 blog:17
