@@ -48,8 +48,8 @@ var app = {
         document.getElementById('selectimage').addEventListener('click',this.selectImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
         navigator.geolocation.getCurrentPosition(function(a) {
-            lat = a.coords.latitude;
-            lng = a.coords.longitude;
+            app.lat = a.coords.latitude;
+            app.lng = a.coords.longitude;
             document.getElementById('hasgeo').style.display = 'block';
             
         }, function() {
@@ -101,10 +101,8 @@ var app = {
         }, { quality: 90, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }); //, destinationType: destinationType.DATA_URL
     },
     publish:function() {
-        alert('publish');
-        var lng = '0';
-        var lat = '0';
-
+        var btn = document.getElementById('dopublish');
+        btn.className = 'button publish loading';
         function dosend() {
             app.postid = 0;
             app.ar('Publish',{
@@ -113,45 +111,27 @@ var app = {
                 title:document.getElementById('title').value,
                 body:document.getElementById('description').value.replace(/\n/ig,'<br />'),
                 imgdata:app.lastimg||'',
-                lat:lat,
-                lng:lng,
+                lat:app.lat,
+                lng:app.lng,
                 blog:17
             },function(d) {
                 con.log(d);
+                btn.className = 'button publish';
                 document.getElementById('title').value = '';
                 document.getElementById('description').value = '';
                 document.getElementById('imgpreview').style.display = 'none';
                 app.postid = d.PageId;
             },function() {
+                btn.className = 'button publish';
                 alert('Något gick fel vid publiseringen');
             }); 
         }
-
-        dosend();
-        
-        
+        dosend();        
     },
     deviceready: function() {
-        // This is an event handler function, which means the scope is the event.
-        // So, we must explicitly called `app.report()` instead of `this.report()`.
-        app.report('deviceready');
-
         
+        document.body.className = '';
 
-        
-        
-
-    },
-    report: function(id) {
-        // Report the event in the console
-        con.log("Report: " + id);
-
-        // Toggle the state from "pending" to "complete" for the reported ID.
-        // Accomplished by adding .hide to the pending element and removing
-        // .hide from the complete element.
-        document.querySelector('#' + id + ' .pending').className += ' hide';
-        var completeElem = document.querySelector('#' + id + ' .complete');
-        completeElem.className = completeElem.className.split('hide').join('');
     }
 };
 
