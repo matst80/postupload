@@ -39,7 +39,7 @@ var app = {
 
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
-
+        app.stat = document.getElementById('status');
         
         document.getElementById('tgldebug').addEventListener('click',function() {
             var el = document.getElementById('info');
@@ -70,7 +70,7 @@ var app = {
             smallImage.style.display = 'block';
             smallImage.className = 'appeardown loading';
 
-
+            app.stat.innerHTML = 'Laddar upp...';
             app.imgElm.className = 'button media upload loading';
 
             var options = new FileUploadOptions();
@@ -88,11 +88,13 @@ var app = {
             ft.upload(imageURI, app.baseurl+"/Userfiles/?upFile=/Userfiles/mobile/", function(r) {
                 con.log(r);
                 app.imgElm.className = 'button media upload';
+                app.stat.innerHTML = 'Bilden sparad!';
                 if (app.postid && app.postid>0)
                     ar('BindImage',{},function() {con.log('image bound');},function() {con.log('imagebindfail');});
                 smallImage.className = 'appeardown';
                 app.lastimg = r.response;
             }, function(e) {
+                app.stat.innerHTML = 'Fel vid uppladdning!';
                 smallImage.className = 'appeardown error';
                 con.log(e);
                 app.imgElm.className = 'button media upload error';
@@ -106,6 +108,7 @@ var app = {
     publish:function() {
         var btn = document.getElementById('dopublish');
         btn.className = 'button publish loading';
+        app.stat.innerHTML = 'Publicerar!';
         function dosend() {
             app.postid = 0;
             app.ar('Publish',{
@@ -119,12 +122,14 @@ var app = {
                 blog:17
             },function(d) {
                 con.log(d);
+                app.stat.innerHTML = 'Klar!';
                 btn.className = 'button publish';
                 document.getElementById('title').value = '';
                 document.getElementById('description').value = '';
                 document.getElementById('imgpreview').style.display = 'none';
                 app.postid = d.PageId;
             },function() {
+                app.stat.innerHTML = 'Något gick fel.';
                 btn.className = 'button publish';
                 alert('Något gick fel vid publiseringen');
             }); 
