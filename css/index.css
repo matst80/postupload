@@ -33,6 +33,34 @@
         transition: all 1s ease-in-out;
 }
 
+#login {
+    display: block;
+    position: absolute;
+    top:0;
+    left:0;
+    bottom: 0;
+    right:0;
+    background-color: rgba(0,0,0,0.2);
+}
+
+
+
+.login {
+    background-color: #fff;
+    padding:20px;
+    width:280px;
+    margin: 20px auto;
+    border:solid 1px #ccc;
+}
+div.login input {
+    margin-left: 0;    
+    width:100%;
+}
+
+#login.loading {
+    display: none;
+}
+
 .sright, .sleft,.sup,.sdown {
         
          opacity:1;
@@ -112,7 +140,7 @@ h1 {
 	position: relative;
 	min-height: 85px;
 }
-input[type=text] {
+input[type=text], input[type=password] {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	background: #FFF;
