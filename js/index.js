@@ -46,7 +46,8 @@ var app = {
             el.style.display=(el.style.display=='block')?'none':'block';
         },false);
         this.imgElm = document.getElementById('selectimage');
-        document.getElementById('selectimage').addEventListener('click',this.selectImage,false);
+        document.getElementById('selfile').addEventListener('click',this.selectImage,false);
+        document.getElementById('selcamera').addEventListener('click',this.cameraImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
         navigator.geolocation.getCurrentPosition(function(a) {
             app.lat = a.coords.latitude;
@@ -57,7 +58,13 @@ var app = {
             con.log('errorlocation');
         });
     },
+    cameraImage:function() {
+        app.fetchImage(navigator.camera.PictureSourceType.CAMERA);
+    },
     selectImage:function() {
+        app.fetchImage(navigator.camera.PictureSourceType.PHOTOLIBRARY);
+    },
+    fetchImage:function(typ) {
         var pictureSource=navigator.camera.PictureSourceType;
         var destinationType=navigator.camera.DestinationType;
         con.log(destinationType);
@@ -105,7 +112,7 @@ var app = {
             
         }, function() {
             alert('Filen kunde inte laddas upp');
-        }, { quality: 90, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }); //, destinationType: destinationType.DATA_URL
+        }, { quality: 90, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: typ }); //, destinationType: destinationType.DATA_URL
     },
     publish:function() {
         var btn = document.getElementById('dopublish');
