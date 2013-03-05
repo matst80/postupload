@@ -8,14 +8,14 @@ var con = {
 };
 var app = {
     lng:'0',
-    lat:'',
+    lat:'0',
     ar:function(cmd,data,cb,err) {
         var request = new XMLHttpRequest();
         
         request.onload = function() {
             con.log(request);
             if (cb)
-                cb();
+                cb(eval('(' + request.response + ')'));
 
         };
         request.onerror = function() {
@@ -130,7 +130,7 @@ var app = {
                 document.getElementById('title').value = '';
                 document.getElementById('description').value = '';
                 document.getElementById('imgpreview').style.display = 'none';
-                app.postid = d.PageId;
+                app.postid = d.d.PageId;
             },function() {
                 app.stat.innerHTML = 'Något gick fel.';
                 navigator.notification.vibrate(350);
