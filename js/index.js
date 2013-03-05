@@ -110,6 +110,7 @@ var app = {
                 con.log('error',e);
             });
             xhr.open("POST", app.baseurl+ "/Userfiles/?upFile=/Userfiles/mobilefiles/");
+            xhr.setRequestHeader('X-Filename', 'test22.jps');
             xhr.send(imageData);
         }, function() {
             alert('nejdu');
@@ -128,3 +129,4 @@ var app = {
         completeElem.className = completeElem.className.split('hide').join('');
     }
 };
+
