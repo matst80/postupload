@@ -1,6 +1,8 @@
 var con = {
     log:function(a) {
         var el = document.getElementById('info');
+        if (typeof(a)=='object')
+            a = JSON.stringify(a);
         el.innerHTML+=a+'<br/>';
     }    
 };
@@ -46,20 +48,33 @@ var app = {
     },
     publish:function() {
         alert('publish');
-        
-        app.ar('Publish',{
+        var lng = '0';
+        var lat = '0';
+
+        function dosend() {
+            app.ar('Publish',{
                 username:"testuser",
                 password:"test100%",
                 title:document.getElementById('title').value,
                 body:document.getElementById('bodytxt').value,
-                imgdata:app.lastimg||'',
-                lat:"16",
-                lng:"18",
+                imgdata:'',
+                lat:lat,
+                lng:lng,
                 blog:17
             },function(d) {
                 con.log(d);
                 alert(d.PageId);
-            });
+            }); 
+        }
+
+        navigator.geolocation.getCurrentPosition(function(a) {
+            lat = a.coords.latitude;
+            lng = a.coords.longitude;
+        }, function() {
+            con.log('errorlocation');
+        });
+        
+        
     },
     deviceready: function() {
         // This is an event handler function, which means the scope is the event.
@@ -71,8 +86,7 @@ var app = {
         
         var pictureSource=navigator.camera.PictureSourceType;
         var destinationType=navigator.camera.DestinationType;
-        var info = document.getElementById('info');
-        info.innerHTML = JSON.stringify(destinationType);
+        con.log(destinationType);
         navigator.camera.getPicture(function(imageData) {
             alert('fått bild');
             app.lastimg = imageData;
@@ -97,7 +111,7 @@ var app = {
             xhr.send(imageData);
         }, function() {
             alert('nejdu');
-        }, { quality: 90 }); //, destinationType: destinationType.DATA_URL
+        }, { quality: 90, destinationType: destinationType.DATA_URL }); //, destinationType: destinationType.DATA_URL
 
     },
     report: function(id) {
