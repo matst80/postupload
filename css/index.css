@@ -48,7 +48,6 @@ h1 {
 	max-width: 100%;
 	border-radius: 6px;
 	background: #FFF;
-	padding-top: 10px;
 	min-height: 100%;
 	margin-bottom: 6px;
 }
@@ -82,7 +81,7 @@ label {
 }
 
 .footer {
-	background: #000;
+	background: red;
 	width: 100%;
 	position: fixed;
 	bottom: 0;
