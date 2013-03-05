@@ -108,7 +108,7 @@ var app = {
                 username:"testuser",
                 password:"test100%",
                 title:document.getElementById('title').value,
-                body:document.getElementById('description').value,
+                body:document.getElementById('description').value.replace(/\n/ig,'<br />'),
                 imgdata:app.lastimg||'',
                 lat:lat,
                 lng:lng,
