@@ -138,8 +138,7 @@ label {
 	background: red;
 	position: fixed;
 	bottom: 0;
-	left: 0; 
-	right: 0;
+	width: 100%;
 }
 .innerfoot {
 	height: 60px;
@@ -253,4 +252,18 @@ div.loading {
 	border-left: 3px solid #4daf7c;
 	padding: 10px 0;
 	margin-bottom: 10px;
+}
+
+/* portrait */
+@media screen and (orientation:portrait) {
+  .innerfoot {
+	width: 100%;
+	}
+}
+/* landscape */
+@media screen and (orientation:landscape) {
+  /* landscape-specific styles */
+  .innerfoot {
+	width: 100%;
+	}
 }
