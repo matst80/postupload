@@ -186,6 +186,7 @@ img.error:after {
 .media {
 	background: #4daf7c;
 	border: 1px solid #4daf7c;
+	min-height: 35px;
 }
 .error {
 	background: #e15230;
@@ -236,14 +237,22 @@ div.loading span:before {
 	float: left;
 	margin-top: 3px;
 }
-.upload span:before {
-	content: " ";
+span.file{
 	background: url(../img/upload-cloud.png) left center no-repeat;
-	width: 22px;
+	width: 50%;
 	height: 15px;
 	display: block;
 	float: left;
-	margin-top: 3px;
+	margin-top: 2px;
+}
+span.camera{
+	background: url(../img/camera.png) right center no-repeat;
+	width: 50%;
+	height: 15px;
+	display: block;
+	float: right;
+	margin-top: 2px;
+	border-left: 1px solid #8ad9b0;
 }
 #hasgeo span {
 	background: url(../img/flag.png) left center no-repeat;
