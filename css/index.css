@@ -28,6 +28,49 @@
 	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
+.sright, .sleft,.sup,.sdown {
+        -webkit-transition: all 1s ease-in-out;
+        -moz-transition: all 1s ease-in-out;
+        -o-transition: all 1s ease-in-out;
+        -ms-transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out;
+         opacity:1;
+    }
+
+
+    .loading .sright, .loading .sleft,.loading .sup, .loading .sdown {
+        opacity:0;
+    }   
+    
+    .loading .sdown {
+        -webkit-transform: translate(0px,-200px);
+        -moz-transform: translate(0px,-200px);
+        -o-transform: translate(0px,-200px);
+        -ms-transform: translate(0px,-200px);
+    }   
+
+    .loading .sup {
+    -webkit-transform: translate(0px,200px);
+        -moz-transform: translate(0px,200px);
+        -o-transform: translate(0px,200px);
+        -ms-transform: translate(0px,200px);
+    }   
+    .loading .sleft {
+        -webkit-transform: translate(-200px,0px);
+        -moz-transform: translate(-200px,0px);
+        -o-transform: translate(-200px,0px);
+        -ms-transform: translate(-200px,0px);
+    }   
+
+    .loading .sright {
+    -webkit-transform: translate(200px,0px);
+        -moz-transform: translate(200px,0px);
+        -o-transform: translate(200px,0px);
+        -ms-transform: translate(200px,0px);
+    }   
+}
+
+
 html {
 	margin: 0;
 	padding: 0;

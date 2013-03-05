@@ -33,6 +33,7 @@ var app = {
     },
     baseurl:'http://blickevent7.wd6.se',
     initialize: function() {
+        document.body.className = '';
         this.bind();
     },
 
@@ -132,7 +133,7 @@ var app = {
     },
     deviceready: function() {
         
-        document.body.className = '';
+        
 
     }
 };
