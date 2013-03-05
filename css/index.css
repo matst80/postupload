@@ -245,6 +245,15 @@ div.loading span:before {
 	float: left;
 	margin-top: 3px;
 }
+.hasgeo span:before {
+	content: " ";
+	background: url(../img/flag.png) left center no-repeat;
+	width: 15px;
+	height: 15px;
+	display: block;
+	float: left;
+	margin-top: 3px;
+}
 
 .inputwrap {
 	background: #EEE;
