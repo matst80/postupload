@@ -92,9 +92,11 @@ var app = {
                 if (app.postid && app.postid>0)
                     ar('BindImage',{},function() {con.log('image bound');},function() {con.log('imagebindfail');});
                 smallImage.className = 'appeardown';
+                navigator.notification.vibrate(50);
                 app.lastimg = r.response;
             }, function(e) {
                 app.stat.innerHTML = 'Fel vid uppladdning!';
+                navigator.notification.vibrate(300);
                 smallImage.className = 'appeardown error';
                 con.log(e);
                 app.imgElm.className = 'button media upload error';
@@ -124,12 +126,14 @@ var app = {
                 con.log(d);
                 app.stat.innerHTML = 'Klar!';
                 btn.className = 'button publish';
+                navigator.notification.vibrate(50);
                 document.getElementById('title').value = '';
                 document.getElementById('description').value = '';
                 document.getElementById('imgpreview').style.display = 'none';
                 app.postid = d.PageId;
             },function() {
                 app.stat.innerHTML = 'Något gick fel.';
+                navigator.notification.vibrate(350);
                 btn.className = 'button publish';
                 alert('Något gick fel vid publiseringen');
             }); 
