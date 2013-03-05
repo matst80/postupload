@@ -196,7 +196,7 @@ div.loading {
     background: #ccc;
 	border: 1px solid #BBB;
 }
-.loading span:before {
+div.loading span:before {
 	content: " ";
 	background: url(../img/loading.gif) left center no-repeat;
 	width: 15px;
