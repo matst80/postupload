@@ -98,7 +98,7 @@ var app = {
 
 
              var xhr = new XMLHttpRequest(),
-            fileUpload = xhr.upload;
+            var fileUpload = xhr.upload;
             fileUpload.addEventListener("progress", function (e, a) {
                 con.log('prog',e,a);
             });
@@ -109,9 +109,9 @@ var app = {
             fileUpload.addEventListener("error", function (e, a) {
                 con.log('error',arguments);
             });
-            con.
-            xhr.open("POST", app.baseurl+ "/Userfiles/?upFile=/Userfiles/mobilefiles/");
-            xhr.setRequestHeader('X-Filename', 'test22.jps');
+            con.log('stata upload');
+            xhr.open("POST", app.baseurl+ "/Userfiles/?upFile=/Userfiles/");
+            xhr.setRequestHeader('X-Filename', 'test22.jpg');
             xhr.send(imageData);
         }, function() {
             alert('nejdu');
