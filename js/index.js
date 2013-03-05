@@ -45,8 +45,8 @@ var app = {
 
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
-        var imgElm = app.imgElm = document.getElementById('selectimage');
-        imgElm.addEventListener('click',this.selectImage,false);
+        this.imgElm = document.getElementById('selectimage');
+        document.getElementById('selectimage').addEventListener('click',this.selectImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
     },
     selectImage:function() {
