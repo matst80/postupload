@@ -148,8 +148,10 @@ var app = {
         dosend();        
     },
     testuser:function(cb) {
+        if (!app.username)
+            cb(false);
         this.ar('TestUser',{username:app.username,password:app.password},function(d) {
-            cb(d);
+            cb(d.d);
         },function() {
             cb(false);
         });
@@ -179,7 +181,6 @@ var app = {
             if (ok)
             {
                 con.log({username:username});
-
             }
             else {
                 document.getElementById('login').className = '';
