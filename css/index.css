@@ -114,12 +114,13 @@ label {
 	background: #e15230;
 	border: 1px solid #c43515;
 }
-.loading {
+div.loading {
 	opacity: 0.5;
 	-moz-opacity:0.5;
 	-khtml-opacity: 0.5;
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 	filter: alpha(opacity=50);
+    background: #ccc;
 }
 .button {
 	text-align: center;
