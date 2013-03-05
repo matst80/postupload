@@ -57,7 +57,7 @@ var app = {
                 password = app.password = document.getElementById('password').value;
 
                 document.getElementById('login').className = 'loading';
-                this.testuser(function(ok) {
+                app.testuser(function(ok) {
                     if (!ok)
                         document.getElementById('login').className = '';
                     else
