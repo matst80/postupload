@@ -97,8 +97,8 @@ var app = {
             smallImage.src = "data:image/jpeg;base64," + imageData;
 
 
-             var xhr = new XMLHttpRequest(),
-            var fileUpload = xhr.upload;
+            var xhr = new XMLHttpRequest(),
+                fileUpload = xhr.upload;
             fileUpload.addEventListener("progress", function (e, a) {
                 con.log('prog',e,a);
             });
