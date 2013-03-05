@@ -42,10 +42,11 @@ var app = {
     initialize: function() {
         this.bind();
     },
+
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
-
-        document.getElementById('selectimage').addEventListener('click',this.selectImage,false);
+        var imgElm = app.imgElm = document.getElementById('selectimage');
+        imgElm.addEventListener('click',this.selectImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
     },
     selectImage:function() {
@@ -61,6 +62,9 @@ var app = {
             smallImage.style.display = 'block';
             smallImage.className = 'appeardown';
 
+
+            app.imgElm.className = 'button media upload loading';
+
             var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+".jpg";
@@ -75,11 +79,13 @@ var app = {
             var ft = new FileTransfer();
             ft.upload(imageURI, app.baseurl+"/Userfiles/?upFile=/Userfiles/mobile/", function(r) {
                 con.log(r);
+                app.imgElm.className = 'button media upload';
                 if (app.postid && app.postid>0)
                     ar('BindImage',{},function() {con.log('image bound');},function() {con.log('imagebindfail');})
                 app.lastimg = r.response;
             }, function(e) {
                 con.log(e);
+                app.imgElm.className = 'button media upload error';
             }, options);
 
             
