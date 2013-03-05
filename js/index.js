@@ -1,4 +1,9 @@
-
+var con = {
+    log:function(a) {
+        var el = document.getElementById('info');
+        el.innerHTML+=a+'<br/>';
+    }    
+};
 var app = {
     ar:function(cmd,data,cb,err) {
         var request = new XMLHttpRequest();
@@ -52,7 +57,7 @@ var app = {
                 lng:"18",
                 blog:17
             },function(d) {
-                console.log(d);
+                con.log(d);
                 alert(d.PageId);
             });
     },
@@ -77,21 +82,19 @@ var app = {
 
 
              var xhr = new XMLHttpRequest(),
-                    fileUpload = xhr.upload;
-                    fileUpload.addEventListener("progress", function (e, a) {
-                        console.log('prog',e,a);
-                    });
-                    fileUpload.addEventListener("loadend",function(e) {
-                        app.serverfile = xhr.responseText;
-                        console.log(xhr.responseText);
-                    });
-                    fileUpload.addEventListener("error", function (e, a) {
-                        console.log('error',e);
-                    });
-                     xhr.open("POST", "/Userfiles/?upFile=/Userfiles/mobilefiles/");
-                     xhr.send(imageData);
-                //xhr.setRequestHeader('X-Filename', );
-
+            fileUpload = xhr.upload;
+            fileUpload.addEventListener("progress", function (e, a) {
+                con.log('prog',e,a);
+            });
+            fileUpload.addEventListener("loadend",function(e) {
+                app.serverfile = xhr.responseText;
+                con.log(xhr.responseText);
+            });
+            fileUpload.addEventListener("error", function (e, a) {
+                con.log('error',e);
+            });
+            xhr.open("POST", app.baseurl+ "/Userfiles/?upFile=/Userfiles/mobilefiles/");
+            xhr.send(imageData);
         }, function() {
             alert('nejdu');
         }, { quality: 90 }); //, destinationType: destinationType.DATA_URL
@@ -99,7 +102,7 @@ var app = {
     },
     report: function(id) {
         // Report the event in the console
-        console.log("Report: " + id);
+        con.log("Report: " + id);
 
         // Toggle the state from "pending" to "complete" for the reported ID.
         // Accomplished by adding .hide to the pending element and removing
