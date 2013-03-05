@@ -44,7 +44,48 @@ var app = {
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
+
+        document.getElementById('selectImage').addEventListener('click',this.selectImage,false);
         document.getElementById('doupload').addEventListener('click',this.publish,false);
+    },
+    selectImage:function() {
+        var pictureSource=navigator.camera.PictureSourceType;
+        var destinationType=navigator.camera.DestinationType;
+        con.log(destinationType);
+        navigator.camera.getPicture(function(imageURI) {
+            //alert('fått bild');
+            //app.lastimg = imageU;
+            var smallImage = document.getElementById('theimg');
+            smallImage.style.display = 'block';
+            smallImage.src = imageURI;
+
+
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+".jpg";
+            options.mimeType="image/jpeg";
+
+            var params = new Object();
+            params.value1 = "test";
+            params.value2 = "param";
+
+            options.params = params;
+
+            var ft = new FileTransfer();
+            ft.upload(imageURI, app.baseurl+"/Userfiles/?upFile=/Userfiles/mobile/", function(r) {
+                con.log(r);
+                if (app.postid && app.postid>0)
+                    ar('BindImage',{},function() {con.log('image bound');},function() {con.log('imagebindfail');})
+                app.lastimg = r.response;
+            }, function(e) {
+                con.log(e);
+            }, options);
+
+            
+        }, function() {
+            alert('nejdu');
+        }, { quality: 90, destinationType: navigator.camera.DestinationType.FILE_URI,
+                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }); //, destinationType: destinationType.DATA_URL
     },
     publish:function() {
         alert('publish');
@@ -87,43 +128,7 @@ var app = {
         
 
         
-        var pictureSource=navigator.camera.PictureSourceType;
-        var destinationType=navigator.camera.DestinationType;
-        con.log(destinationType);
-        navigator.camera.getPicture(function(imageURI) {
-            //alert('fått bild');
-            //app.lastimg = imageU;
-            var smallImage = document.getElementById('theimg');
-            smallImage.style.display = 'block';
-            smallImage.src = imageURI;
-
-
-            var options = new FileUploadOptions();
-            options.fileKey="file";
-            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+".jpg";
-            options.mimeType="image/jpeg";
-
-            var params = new Object();
-            params.value1 = "test";
-            params.value2 = "param";
-
-            options.params = params;
-
-            var ft = new FileTransfer();
-            ft.upload(imageURI, app.baseurl+"/Userfiles/?upFile=/Userfiles/mobile/", function(r) {
-                con.log(r);
-                if (app.postid && app.postid>0)
-                    ar('BindImage',{},function() {con.log('image bound');},function() {con.log('imagebindfail');})
-                app.lastimg = r.response;
-            }, function(e) {
-                con.log(e);
-            }, options);
-
-            
-        }, function() {
-            alert('nejdu');
-        }, { quality: 90, destinationType: navigator.camera.DestinationType.FILE_URI,
-                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }); //, destinationType: destinationType.DATA_URL
+        
 
     },
     report: function(id) {
