@@ -11,11 +11,11 @@ var app = {
         var request = new XMLHttpRequest();
         //fileUpload = request.upload;
         request.onload = function() {
-            console.log(request);
+            con.log(request);
 
         };
                 request.onerror = function() {
-            console.log('error',request);
+            con.log('error',request);
 
         };
          /*
@@ -99,7 +99,7 @@ var app = {
 
             var options = new FileUploadOptions();
             options.fileKey="file";
-            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+".jpg";
             options.mimeType="image/jpeg";
 
             var params = new Object();
@@ -109,8 +109,9 @@ var app = {
             options.params = params;
 
             var ft = new FileTransfer();
-            ft.upload(imageURI, app.baseurl+"//Userfiles/?upFile=/Userfiles/", function(r) {
+            ft.upload(imageURI, app.baseurl+"/Userfiles/?upFile=/Userfiles/mobile/", function(r) {
                 con.log(r);
+                app.lastimg = r.response;
             }, function(e) {
                 con.log(e);
             }, options);
