@@ -132,6 +132,7 @@ div.loading {
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 	filter: alpha(opacity=50);
     background: #ccc;
+	border: 1px solid #BBB;
 }
 .loading span:before {
 	content: " ";
