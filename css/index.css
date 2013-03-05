@@ -45,6 +45,8 @@ body {
     padding:10px;
     border-radius: 3px;
     margin:2px;    
+    max-height: 120px;
+    overflow: auto;
 }
 h1 {
 	font-weight: 300;
