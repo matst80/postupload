@@ -94,10 +94,10 @@ var app = {
             //app.lastimg = imageData;
             var smallImage = document.getElementById('theimg');
             smallImage.style.display = 'block';
-            smallImage.src = "data:image/jpeg;base64," + imageData;
+            smallImage.src = imageURI;
 
 
- var options = new FileUploadOptions();
+            var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
             options.mimeType="image/jpeg";
