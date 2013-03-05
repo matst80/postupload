@@ -12,6 +12,9 @@ var app = {
         //fileUpload = request.upload;
         request.onload = function() {
             con.log(request);
+            document.getElementById('title').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('imgpreview').style.display = 'none';
 
         };
                 request.onerror = function() {
