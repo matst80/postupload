@@ -149,8 +149,10 @@ var app = {
         function dosend() {
             app.postid = 0;
             app.ar('Publish',{
-                username:"testuser",
-                password:"test100%",
+                username:app.username,
+                password:app.password,
+                //username:"testuser",
+                //password:"test100%",
                 title:document.getElementById('title').value,
                 body:document.getElementById('description').value.replace(/\n/ig,'<br />'),
                 imgdata:app.lastimg||'',
