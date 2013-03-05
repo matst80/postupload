@@ -93,12 +93,9 @@ var app = {
         app.fetchImage(navigator.camera.PictureSourceType.PHOTOLIBRARY);
     },
     fetchImage:function(typ) {
-        var pictureSource=navigator.camera.PictureSourceType;
-        var destinationType=navigator.camera.DestinationType;
-        con.log(destinationType);
+       
         navigator.camera.getPicture(function(imageURI) {
-            //alert('fått bild');
-            //app.lastimg = imageU;
+       
             var smallImage = document.getElementById('imgpreview');
             
             smallImage.src = imageURI;
@@ -125,7 +122,7 @@ var app = {
                 app.imgElm.className = 'button media upload';
                 app.stat.innerHTML = 'Bilden sparad!';
                 if (app.postid && app.postid>0)
-                    ar('BindImage',{},function() {con.log('image bound');},function() {con.log('imagebindfail');});
+                    ar('BindImage',{pid:app.postid, file:r.response},function() {con.log('image bound');},function() {con.log('imagebindfail');});
                 smallImage.className = 'appeardown';
                 navigator.notification.vibrate(50);
                 app.lastimg = r.response;
