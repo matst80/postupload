@@ -66,7 +66,8 @@ var app = {
         
         var pictureSource=navigator.camera.PictureSourceType;
         var destinationType=navigator.camera.DestinationType;
-
+        var info = document.getElementById('info');
+        info.innerHTML = JSON.stringify(destinationType);
         navigator.camera.getPicture(function(imageData) {
             alert('fått bild');
             app.lastimg = imageData;
@@ -74,9 +75,26 @@ var app = {
             smallImage.style.display = 'block';
             smallImage.src = "data:image/jpeg;base64," + imageData;
 
+
+             var xhr = new XMLHttpRequest(),
+                    fileUpload = xhr.upload;
+                    fileUpload.addEventListener("progress", function (e, a) {
+                        console.log('prog',e,a);
+                    });
+                    fileUpload.addEventListener("loadend",function(e) {
+                        app.serverfile = xhr.responseText;
+                        console.log(xhr.responseText);
+                    });
+                    fileUpload.addEventListener("error", function (e, a) {
+                        console.log('error',e);
+                    });
+                     xhr.open("POST", "/Userfiles/?upFile=/Userfiles/mobilefiles/");
+                     xhr.send(imageData);
+                //xhr.setRequestHeader('X-Filename', );
+
         }, function() {
             alert('nejdu');
-        }, { quality: 90, destinationType: destinationType.DATA_URL });
+        }, { quality: 90 }); //, destinationType: destinationType.DATA_URL
 
     },
     report: function(id) {
