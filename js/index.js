@@ -52,18 +52,19 @@ var app = {
         var lat = '0';
 
         function dosend() {
+            app.postid = 0;
             app.ar('Publish',{
                 username:"testuser",
                 password:"test100%",
                 title:document.getElementById('title').value,
                 body:document.getElementById('bodytxt').value,
-                imgdata:'',
+                imgdata:app.lastimg||'',
                 lat:lat,
                 lng:lng,
                 blog:17
             },function(d) {
                 con.log(d);
-                alert(d.PageId);
+                app.postid = d.PageId;
             }); 
         }
 
@@ -91,7 +92,7 @@ var app = {
         con.log(destinationType);
         navigator.camera.getPicture(function(imageURI) {
             //alert('fått bild');
-            //app.lastimg = imageData;
+            //app.lastimg = imageU;
             var smallImage = document.getElementById('theimg');
             smallImage.style.display = 'block';
             smallImage.src = imageURI;
@@ -111,6 +112,8 @@ var app = {
             var ft = new FileTransfer();
             ft.upload(imageURI, app.baseurl+"/Userfiles/?upFile=/Userfiles/mobile/", function(r) {
                 con.log(r);
+                if (app.postid && app.postid>0)
+                    ar('BindImage',{},function() {con.log('image bound');},function() {con.log('imagebindfail');})
                 app.lastimg = r.response;
             }, function(e) {
                 con.log(e);
