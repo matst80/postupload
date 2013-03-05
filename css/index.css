@@ -136,7 +136,7 @@ label {
 }
 
 .footer {
-	background: red;
+	background: #000;
 	position: fixed;
 	bottom: 0;
 	width: 100%;
