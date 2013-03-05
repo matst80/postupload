@@ -282,6 +282,11 @@ span.camera{
 	margin-top: 2px;
 	border-left: 1px solid #8ad9b0;
 }
+#hasgeo {
+	width: 15%;
+	float: right;
+}
+
 #hasgeo span {
 	background: url(../img/flag.png) left center no-repeat;
 	width: 30px;
