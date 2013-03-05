@@ -7,6 +7,8 @@ var con = {
     }    
 };
 var app = {
+    lng:'0',
+    lat:'',
     ar:function(cmd,data,cb,err) {
         var request = new XMLHttpRequest();
         
@@ -37,7 +39,7 @@ var app = {
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
 
-
+        
         document.getElementById('tgldebug').addEventListener('click',function() {
             var el = document.getElementById('info');
             el.style.display=(el.style.display=='block')?'none':'block';
@@ -45,6 +47,14 @@ var app = {
         this.imgElm = document.getElementById('selectimage');
         document.getElementById('selectimage').addEventListener('click',this.selectImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
+        navigator.geolocation.getCurrentPosition(function(a) {
+            lat = a.coords.latitude;
+            lng = a.coords.longitude;
+            document.getElementById('hasgeo').style.display = 'block';
+            
+        }, function() {
+            con.log('errorlocation');
+        });
     },
     selectImage:function() {
         var pictureSource=navigator.camera.PictureSourceType;
@@ -117,14 +127,7 @@ var app = {
             }); 
         }
 
-        navigator.geolocation.getCurrentPosition(function(a) {
-            lat = a.coords.latitude;
-            lng = a.coords.longitude;
-            dosend();
-        }, function() {
-            con.log('errorlocation');
-            dosend();
-        });
+        dosend();
         
         
     },
