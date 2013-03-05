@@ -33,7 +33,7 @@ var app = {
                 }, false);*/
         con.log("running:"+cmd,request);
         request.open("POST", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd);
-        request.setRequestHeader('Content-type', 'html/json');
+        request.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
         var data = JSON.stringify(data);
         con.log(data);
         request.send(data);
