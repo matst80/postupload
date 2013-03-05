@@ -70,8 +70,10 @@ var app = {
         navigator.geolocation.getCurrentPosition(function(a) {
             lat = a.coords.latitude;
             lng = a.coords.longitude;
+            dosend();
         }, function() {
             con.log('errorlocation');
+            dosend();
         });
         
         
