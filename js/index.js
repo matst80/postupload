@@ -45,8 +45,8 @@ var app = {
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
 
-        document.getElementById('selectImage').addEventListener('click',this.selectImage,false);
-        document.getElementById('doupload').addEventListener('click',this.publish,false);
+        document.getElementById('selectimage').addEventListener('click',this.selectImage,false);
+        document.getElementById('dopublish').addEventListener('click',this.publish,false);
     },
     selectImage:function() {
         var pictureSource=navigator.camera.PictureSourceType;
@@ -55,10 +55,11 @@ var app = {
         navigator.camera.getPicture(function(imageURI) {
             //alert('fått bild');
             //app.lastimg = imageU;
-            var smallImage = document.getElementById('theimg');
-            smallImage.style.display = 'block';
+            var smallImage = document.getElementById('imgpreview');
+            
             smallImage.src = imageURI;
-
+            smallImage.style.display = 'block';
+            smallImage.className = 'appeardown';
 
             var options = new FileUploadOptions();
             options.fileKey="file";
@@ -98,7 +99,7 @@ var app = {
                 username:"testuser",
                 password:"test100%",
                 title:document.getElementById('title').value,
-                body:document.getElementById('bodytxt').value,
+                body:document.getElementById('description').value,
                 imgdata:app.lastimg||'',
                 lat:lat,
                 lng:lng,
