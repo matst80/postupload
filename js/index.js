@@ -89,7 +89,7 @@ var app = {
         var pictureSource=navigator.camera.PictureSourceType;
         var destinationType=navigator.camera.DestinationType;
         con.log(destinationType);
-        navigator.camera.getPicture(function(imageData) {
+        navigator.camera.getPicture(function(imageURI) {
             //alert('fått bild');
             //app.lastimg = imageData;
             var smallImage = document.getElementById('theimg');
@@ -97,25 +97,29 @@ var app = {
             smallImage.src = "data:image/jpeg;base64," + imageData;
 
 
-            var xhr = new XMLHttpRequest(),
-                fileUpload = xhr.upload;
-            fileUpload.addEventListener("progress", function (e, a) {
-                con.log('prog',e,a);
-            });
-            fileUpload.addEventListener("loadend",function(e) {
-                app.serverfile = xhr.responseText;
-                con.log(xhr.responseText);
-            });
-            fileUpload.addEventListener("error", function (e, a) {
-                con.log('error',arguments);
-            });
-            con.log('stata upload');
-            xhr.open("POST", app.baseurl+ "/Userfiles/?upFile=/Userfiles/");
-            xhr.setRequestHeader('X-Filename', 'test22.jpg');
-            xhr.send(imageData);
+ var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+
+            var params = new Object();
+            params.value1 = "test";
+            params.value2 = "param";
+
+            options.params = params;
+
+            var ft = new FileTransfer();
+            ft.upload(imageURI, app.baseurl+"//Userfiles/?upFile=/Userfiles/", function(r) {
+                con.log(r);
+            }, function(e) {
+                con.log(e);
+            }, options);
+
+            
         }, function() {
             alert('nejdu');
-        }, { quality: 90, destinationType: destinationType.DATA_URL }); //, destinationType: destinationType.DATA_URL
+        }, { quality: 90, destinationType: navigator.camera.DestinationType.FILE_URI,
+                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }); //, destinationType: destinationType.DATA_URL
 
     },
     report: function(id) {
