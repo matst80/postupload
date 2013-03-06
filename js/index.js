@@ -25,7 +25,7 @@ var app = {
         };
         
 
-        request.open("POST", app.baseurl+'/Core,Core.WebServices.PostPublish.asmx/'+cmd);
+        request.open("POST", app.baseurl+'/Core.Blogger,Core.Blogger.BlogService.asmx/'+cmd);
         request.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
         var data = JSON.stringify(data);
         con.log(data);
@@ -76,6 +76,10 @@ var app = {
             if (ok)
             {
                 con.log({username:username});
+                for(var i in app.settings) {
+                    var s = app.settings[i];
+                    con.log(s);
+                }
             }
             else {
                 document.getElementById('login').className = '';
@@ -191,6 +195,7 @@ var app = {
             cb(false);
         this.ar('TestUser',{username:app.username,password:app.password},function(d) {
             con.log(d);
+            app.settings = d.d;
             cb(d.d);
         },function() {
             cb(false);
