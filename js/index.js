@@ -221,15 +221,16 @@ var app = {
                 lng:app.lng,
                 blog:app.currSel.PageId
             },function(d) {
-                con.log(d);
+                //con.log(d);
                 app.stat.innerHTML = 'Klar!';
                 btn.className = 'button publish';
                 navigator.notification.vibrate(50);
+                app.postid = d.d.PageId;
                 document.getElementById('title').value = '';
-                document.getElementById('ingress').value = '';
                 document.getElementById('description').value = '';
                 document.getElementById('imgpreview').style.display = 'none';
-                app.postid = d.d.PageId;
+                document.getElementById('ingress').value = '';
+                
             },function() {
                 app.stat.innerHTML = 'Något gick fel.';
                 navigator.notification.vibrate(350);
