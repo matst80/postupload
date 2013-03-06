@@ -124,6 +124,11 @@ var app = {
     },
     enumblogs:function(data) {
          var bsel = document.getElementById('blogid');
+         bsel.addEventListener('change',function() {
+            var csel = app.settings[bsel.selectedIndex];
+            app.currSel = csel;
+            con.log(csel);
+         },false);
                 for(var i in app.settings) {
                     var s = app.settings[i];
                     con.log(s);
@@ -132,6 +137,7 @@ var app = {
                     opt.innerHTML = s.Name;
                     bsel.appendChild(opt);
                 }
+                document.getElementById('blogsel').className = '';
     },
     cameraImage:function() {
         app.fetchImage(navigator.camera.PictureSourceType.CAMERA);
