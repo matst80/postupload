@@ -88,9 +88,14 @@ var app = {
                 document.getElementById('login').className = 'loading';
                 app.testuser(function(ok) {
                     if (!ok)
+                    {
+                        
                         document.getElementById('login').className = '';
+                    }
                     else
                     {
+                        app.settings = ok;
+                        app.enumblogs(ok);
                         window.localStorage.setItem("baseurl",app.baseurl);
                         window.localStorage.setItem("username",app.username);
                         window.localStorage.setItem("password",app.password);
@@ -100,16 +105,8 @@ var app = {
         app.testuser(function(ok) {
             if (ok)
             {
-                con.log({username:username});
-                var bsel = document.getElementById('blogid');
-                for(var i in app.settings) {
-                    var s = app.settings[i];
-                    con.log(s);
-                    var opt = document.createElement('option');
-                    opt.value = s.PageId,
-                    opt.innerHTML = s.Name;
-                    bsel.appendChild(opt);
-                }
+                app.settings = ok;
+                app.enumblogs(ok);
             }
             else {
                 document.getElementById('login').className = '';
@@ -124,6 +121,17 @@ var app = {
         }, function() {
             con.log('errorlocation');
         });
+    },
+    enumblogs:function(data) {
+         var bsel = document.getElementById('blogid');
+                for(var i in app.settings) {
+                    var s = app.settings[i];
+                    con.log(s);
+                    var opt = document.createElement('option');
+                    opt.value = s.PageId,
+                    opt.innerHTML = s.Name;
+                    bsel.appendChild(opt);
+                }
     },
     cameraImage:function() {
         app.fetchImage(navigator.camera.PictureSourceType.CAMERA);
