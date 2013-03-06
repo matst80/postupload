@@ -11,7 +11,7 @@ var app = {
     lat:'0',
     ar:function(cmd,data,cb,err) {
         
-        if (app.baseurl && app.baseurl.lenght)
+        if (app.baseurl && app.baseurl.length)
         {
             var request = new XMLHttpRequest();
             
