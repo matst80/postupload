@@ -45,7 +45,7 @@ var app = {
             var el = document.getElementById('info');
             el.style.display=(el.style.display=='block')?'none':'block';
         },false);
-        this.imgElm = document.getElementById('selectimage');
+        this.imgElm = document.getElementById('uplbtn');
         document.getElementById('selfile').addEventListener('click',this.selectImage,false);
         document.getElementById('selcamera').addEventListener('click',this.cameraImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
@@ -118,11 +118,18 @@ var app = {
 
             var ft = new FileTransfer();
             ft.upload(imageURI, app.baseurl+"/Userfiles/?upFile=/Userfiles/mobile/", function(r) {
-                con.log(r);
+                //con.log(r);
                 app.imgElm.className = 'button media upload';
                 app.stat.innerHTML = 'Bilden sparad!';
                 if (app.postid && app.postid>0)
-                    ar('BindImage',{pid:app.postid, file:r.response},function() {con.log('image bound');},function() {con.log('imagebindfail');});
+                    ar('BindImage',{
+                        pid:app.postid, 
+                        file:r.response
+                    },function() {
+                        con.log('image bound');
+                    },function() {
+                        con.log('imagebindfail');
+                    });
                 smallImage.className = 'appeardown';
                 navigator.notification.vibrate(50);
                 app.lastimg = r.response;
