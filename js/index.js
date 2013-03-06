@@ -211,11 +211,12 @@ var app = {
                 //username:"testuser",
                 //password:"test100%",
                 title:document.getElementById('title').value,
+                ingress:document.getElementById('ingress').value,
                 body:document.getElementById('description').value.replace(/\n/ig,'<br />'),
                 imgdata:app.lastimg||'',
                 lat:app.lat,
                 lng:app.lng,
-                blog:17
+                blog:app.currSel.PageId
             },function(d) {
                 con.log(d);
                 app.stat.innerHTML = 'Klar!';
