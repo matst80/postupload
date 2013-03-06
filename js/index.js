@@ -60,14 +60,14 @@ var app = {
         text.addEventListener('keydown',delayedResize,false);
     },
     bind: function() {
-        document.addEventListener('deviceready', this.deviceready, false);
+        document.addEventListener('deviceready', app.deviceready, false);
         app.stat = document.getElementById('status');
         
         document.getElementById('tgldebug').addEventListener('click',function() {
             var el = document.getElementById('info');
             el.style.display=(el.style.display=='block')?'none':'block';
         },false);
-        this.imgElm = document.getElementById('uplbtn');
+        app.imgElm = document.getElementById('uplbtn');
         document.getElementById('selfile').addEventListener('click',this.selectImage,false);
         document.getElementById('selcamera').addEventListener('click',this.cameraImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
@@ -102,16 +102,7 @@ var app = {
                     }
                 });
         },false);
-        app.testuser(function(ok) {
-            if (ok)
-            {
-                app.settings = ok;
-                app.enumblogs(ok);
-            }
-            else {
-                document.getElementById('login').className = '';
-            }
-        });
+        
 
         navigator.geolocation.getCurrentPosition(function(a) {
             app.lat = a.coords.latitude;
@@ -123,6 +114,7 @@ var app = {
         });
     },
     enumblogs:function(data) {
+         var bprt = document.getElementById('blogsel');
          var bsel = document.getElementById('blogid');
          bsel.addEventListener('change',function() {
             var csel = app.settings[bsel.selectedIndex];
@@ -137,7 +129,8 @@ var app = {
                     opt.innerHTML = s.Name;
                     bsel.appendChild(opt);
                 }
-                document.getElementById('blogsel').className = '';
+                bprt.style.display = 'block';
+                bprt.className = '';
     },
     cameraImage:function() {
         app.fetchImage(navigator.camera.PictureSourceType.CAMERA);
@@ -248,14 +241,32 @@ var app = {
     },
     deviceready: function() {
         con.log(app);
-        app.username = window.localStorage.getItem("username") ||'testuser';
+        app.username = window.localStorage.getItem("username") || 'testuser';
         app.password = window.localStorage.getItem("password") || 'test100%';
         app.baseurl = window.localStorage.getItem("baseurl") || 'blickevent7.wd6.se';
         //con.log(app);
-        if (app.baseurl) {
+
+        app.testuser(function(ok) {
+            if (ok)
+            {
+                app.settings = ok;
+                app.enumblogs(ok);
+            }
+            else {
+                document.getElementById('login').className = '';
+            }
+        });
+
+        if (app.baseurl && app.baseurl.length) {
             document.getElementById('baseurl').value = app.baseurl;
             document.getElementById('password').value = app.password;
             document.getElementById('username').value = app.username;
+        }
+        else
+        {
+            document.getElementById('baseurl').value = 'blickevent7.wd6.se';
+            document.getElementById('password').value = 'test100%';
+            document.getElementById('username').value = 'testuser';   
         }
     }
 };
