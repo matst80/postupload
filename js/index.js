@@ -89,16 +89,7 @@ var app = {
                 app.testuser(function(ok) {
                     if (!ok)
                     {
-                        
                         document.getElementById('login').className = '';
-                    }
-                    else
-                    {
-                        app.settings = ok;
-                        app.enumblogs(ok);
-                        window.localStorage.setItem("baseurl",app.baseurl);
-                        window.localStorage.setItem("username",app.username);
-                        window.localStorage.setItem("password",app.password);
                     }
                 });
         },false);
@@ -250,8 +241,14 @@ var app = {
         if (!app.username)
             cb(false);
         this.ar('GetBlogs',{username:app.username,password:app.password},function(d) {
-            app.settings = d.d;
-            cb(d.d);
+            if (d.d) {
+                window.localStorage.setItem("baseurl",app.baseurl);
+                window.localStorage.setItem("username",app.username);
+                window.localStorage.setItem("password",app.password);
+                app.settings = d.d;
+                app.enumblogs(d.d);
+            }
+            cb(!!d.d);
         },function() {
             cb(false);
         });
@@ -264,12 +261,7 @@ var app = {
         
 
         app.testuser(function(ok) {
-            if (ok)
-            {
-                app.settings = ok;
-                app.enumblogs(ok);
-            }
-            else {
+            if(!ok) {
                 document.getElementById('login').className = '';
             }
         });
