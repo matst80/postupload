@@ -233,9 +233,10 @@ var app = {
     },
     deviceready: function() {
         con.log(app);
-        app.username = window.localStorage.getItem("username");
-        app.password = window.localStorage.getItem("password");
-        app.baseurl = window.localStorage.getItem("baseurl");
+        app.username = window.localStorage.getItem("username") ||'testuser';
+        app.password = window.localStorage.getItem("password") || 'test100%';
+        app.baseurl = window.localStorage.getItem("baseurl") || 'blickevent7.wd6.se';
+        //con.log(app);
         if (app.baseurl) {
             document.getElementById('baseurl').value = app.baseurl;
             document.getElementById('password').value = app.password;
