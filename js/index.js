@@ -223,7 +223,7 @@ var app = {
     testuser:function(cb) {
         if (!app.username)
             cb(false);
-        this.ar('TestUser',{username:app.username,password:app.password},function(d) {
+        this.ar('GetBlogs',{username:app.username,password:app.password},function(d) {
             con.log(d);
             app.settings = d.d;
             cb(d.d);
