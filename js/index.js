@@ -112,6 +112,8 @@ var app = {
         }, function() {
             con.log('errorlocation');
         });
+        
+        //app.deviceready();
     },
     enumblogs:function(data) {
          var bprt = document.getElementById('blogsel');
@@ -240,11 +242,11 @@ var app = {
         });
     },
     deviceready: function() {
-        con.log(app);
+        
         app.username = window.localStorage.getItem("username") || 'testuser';
         app.password = window.localStorage.getItem("password") || 'test100%';
         app.baseurl = window.localStorage.getItem("baseurl") || 'blickevent7.wd6.se';
-        //con.log(app);
+        
 
         app.testuser(function(ok) {
             if (ok)
