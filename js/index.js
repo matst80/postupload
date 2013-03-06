@@ -113,6 +113,7 @@ var app = {
          bsel.addEventListener('change',function() {
             var csel = app.settings[bsel.selectedIndex-1];
             app.currSel = csel;
+            app.enumCurrentSettings();
             con.log(csel);
          },false);
         for(var i in app.settings) {
@@ -138,7 +139,7 @@ var app = {
     enumCurrentSettings:function() {
         var s = app.currSel;
         document.getElementById('ingress').style.display = (s.HasIngress?'block':'none');
-        document.getElementById('uplbtn').style.display = (s.HasImage?'block':'none');
+        document.getElementById('uplbtn').style.opacity = (s.HasImage?'1':'0');
         
     },
     cameraImage:function() {
@@ -225,6 +226,7 @@ var app = {
                 btn.className = 'button publish';
                 navigator.notification.vibrate(50);
                 document.getElementById('title').value = '';
+                document.getElementById('ingress').value = '';
                 document.getElementById('description').value = '';
                 document.getElementById('imgpreview').style.display = 'none';
                 app.postid = d.d.PageId;
