@@ -217,8 +217,11 @@ var app = {
         app.username = window.localStorage.getItem("username");
         app.password = window.localStorage.getItem("password");
         app.baseurl = window.localStorage.getItem("baseurl");
-        if (app.baseurl)
+        if (app.baseurl) {
             document.getElementById('baseurl').value = app.baseurl;
+            document.getElementById('password').value = app.password;
+            document.getElementById('username').value = app.username;
+        }
     }
 };
 
