@@ -13,26 +13,26 @@ var app = {
         
         if (app.baseurl && app.baseurl.lenght)
         {
-        var request = new XMLHttpRequest();
-        
-        request.onload = function() {
-            con.log(request);
-            if (cb)
-                cb(eval('(' + request.response + ')'));
+            var request = new XMLHttpRequest();
+            
+            request.onload = function() {
+                con.log(request);
+                if (cb)
+                    cb(eval('(' + request.response + ')'));
 
-        };
-        request.onerror = function() {
-            con.log(request);
-            if (err)
-                err();
-        };
-        
+            };
+            request.onerror = function() {
+                con.log(request);
+                if (err)
+                    err();
+            };
+            
 
-        request.open("POST", app.baseurl+'/Core.Blogger,Core.Blogger.BlogService.asmx/'+cmd);
-        request.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-        var data = JSON.stringify(data);
-        con.log(data);
-        request.send(data);
+            request.open("POST", app.baseurl+'/Core.Blogger,Core.Blogger.BlogService.asmx/'+cmd);
+            request.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+            var data = JSON.stringify(data);
+            con.log(data);
+            request.send(data);
         }
         else
             err({error:'No baseurl'});
@@ -213,7 +213,7 @@ var app = {
         });
     },
     deviceready: function() {
-        
+        con.log(app);
         app.username = window.localStorage.getItem("username");
         app.password = window.localStorage.getItem("password");
         app.baseurl = window.localStorage.getItem("baseurl");
