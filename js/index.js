@@ -10,6 +10,9 @@ var app = {
     lng:'0',
     lat:'0',
     ar:function(cmd,data,cb,err) {
+        
+        if (app.baseurl && app.baseurl.lenght)
+        {
         var request = new XMLHttpRequest();
         
         request.onload = function() {
@@ -30,6 +33,9 @@ var app = {
         var data = JSON.stringify(data);
         con.log(data);
         request.send(data);
+        }
+        else
+            err({error:'No baseurl'});
     },
     baseurl:'http://blickevent7.wd6.se',
     initialize: function() {
