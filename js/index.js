@@ -118,8 +118,9 @@ var app = {
     enumblogs:function() {
          var bprt = document.getElementById('blogsel');
          var bsel = document.getElementById('blogid');
+         bsel.innerHTML = '';
          bsel.addEventListener('change',function() {
-            var csel = app.settings[bsel.selectedIndex];
+            var csel = app.settings[bsel.selectedIndex-1];
             app.currSel = csel;
             con.log(csel);
          },false);
@@ -132,11 +133,22 @@ var app = {
             bsel.appendChild(opt);
         }
         con.log('length:'+app.settings.length);
-        if (app.settings.length) {
+        if (app.settings.length>1) {
 
             bprt.style.display = 'block';
             bprt.className = '';
         }
+        else if (app.settings.length==1)
+        {
+            app.currSel = app.settings[0];
+            app.enumCurrentSettings();
+        }
+    },
+    enumCurrentSettings:function() {
+        var s = app.currSel;
+        document.getElementById('ingress').style.display = (s.HasIngress?'block':'none');
+        document.getElementById('uplbtn').style.display = (s.HasImage?'block':'none');
+        
     },
     cameraImage:function() {
         app.fetchImage(navigator.camera.PictureSourceType.CAMERA);
