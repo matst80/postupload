@@ -12,13 +12,16 @@
   
 </head>
 <body class="loading">
+<div class="black">
 <div class="wrapper">
-	<div class="header sdown" id="tgldebug">
+	
+    <div class="header sdown" id="tgldebug">
 		<img class="upimg" id="imgpreview" style="display:none;width:100%" src="about:blank" />
 		<div class="arrow_box"><h1 id="status">Publicera innehåll</h1></div>
 	</div>
 	<div class="debug" style="display:none" id="info">
 	</div>
+    
 	<div class="content">
 		<div id="blogsel" class="loading" style="display:none">
         <div class="inputwrap sdown">
@@ -32,12 +35,13 @@
 			<div id="hasgeo" style="display:none"><span></span></div>
 		</div>
 		
-		<textarea placeholder="Ange en text" id="description"></textarea>
+		<textarea placeholder="Ange en ingress" style="display:none" id="ingress"></textarea>
+        <textarea placeholder="Ange en text" id="description"></textarea>
 	</div>
 	<div class="footer sup">
 		<div class="innerfoot">
 			<div class="left">
-				<div class="button media upload" id="uplbtn">
+				<div class="button media upload" id="uplbtn" style="opacity:0">
 				<span class="file" id="selfile"></span>
 				<span class="camera" id="selcamera"></span>
 			</div>
@@ -67,6 +71,7 @@
                 </div>
         </div>
     </div>
+</div>
 </div>
 <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

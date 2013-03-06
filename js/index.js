@@ -42,7 +42,23 @@ var app = {
         document.body.className = '';
         this.bind();
     },
-
+    autosize:function(id) {
+        var text = document.getElementById(id);
+        function resize () {
+            text.style.height = 'auto';
+            text.style.height = text.scrollHeight+'px';
+        }
+        
+        function delayedResize () {
+            window.setTimeout(resize, 0);
+        }
+        
+        text.addEventListener('change',resize,false);
+        text.addEventListener('cut',delayedResize,false);
+        text.addEventListener('paste',delayedResize,false);
+        text.addEventListener('drop',delayedResize,false);
+        text.addEventListener('keydown',delayedResize,false);
+    },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
         app.stat = document.getElementById('status');
@@ -55,6 +71,9 @@ var app = {
         document.getElementById('selfile').addEventListener('click',this.selectImage,false);
         document.getElementById('selcamera').addEventListener('click',this.cameraImage,false);
         document.getElementById('dopublish').addEventListener('click',this.publish,false);
+
+        app.autosize('description');
+        app.autosize('ingress');
 
         var loginbtn = document.getElementById('dologin');
         
