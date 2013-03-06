@@ -53,8 +53,9 @@ var app = {
         var loginbtn = document.getElementById('dologin');
         
         loginbtn.addEventListener('click',function() {
-                username = app.username = document.getElementById('username').value;
-                password = app.password = document.getElementById('password').value;
+                app.baseurl = document.getElementById('baseurl').value;
+                app.username = document.getElementById('username').value;
+                app.password = document.getElementById('password').value;
 
                 document.getElementById('login').className = 'loading';
                 app.testuser(function(ok) {
@@ -62,8 +63,9 @@ var app = {
                         document.getElementById('login').className = '';
                     else
                     {
-                        window.localStorage.getItem("username",app.username);
-                        window.localStorage.getItem("password",app.password);
+                        window.localStorage.setItem("baseurl",app.baseurl);
+                        window.localStorage.setItem("username",app.username);
+                        window.localStorage.setItem("password",app.password);
                     }
                 });
         },false);
@@ -195,6 +197,7 @@ var app = {
         
         app.username = window.localStorage.getItem("username");
         app.password = window.localStorage.getItem("password");
+        app.baseurl = window.localStorage.getItem("baseurl");
         
     }
 };
