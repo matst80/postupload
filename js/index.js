@@ -57,6 +57,9 @@ var app = {
                 app.username = document.getElementById('username').value;
                 app.password = document.getElementById('password').value;
 
+                if (app.baseurl.indexOf('http://')==-1)
+                    app.baseurl = 'http://'+app.baseurl;
+
                 document.getElementById('login').className = 'loading';
                 app.testuser(function(ok) {
                     if (!ok)
@@ -198,7 +201,8 @@ var app = {
         app.username = window.localStorage.getItem("username");
         app.password = window.localStorage.getItem("password");
         app.baseurl = window.localStorage.getItem("baseurl");
-        
+        if (app.baseurl)
+            document.getElementById('baseurl').value = app.baseurl;
     }
 };
 
