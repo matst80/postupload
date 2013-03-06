@@ -144,7 +144,7 @@ h1 {
 	position: relative;
 	min-height: 85px;
 }
-input[type=text], input[type=password], input[type=url] {
+input[type=text], input[type=password], input[type=url],select {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	background: #FFF;
