@@ -113,9 +113,9 @@ var app = {
             con.log('errorlocation');
         });
         
-        //app.deviceready();
+        app.deviceready();
     },
-    enumblogs:function(data) {
+    enumblogs:function() {
          var bprt = document.getElementById('blogsel');
          var bsel = document.getElementById('blogid');
          bsel.addEventListener('change',function() {
@@ -123,16 +123,20 @@ var app = {
             app.currSel = csel;
             con.log(csel);
          },false);
-                for(var i in app.settings) {
-                    var s = app.settings[i];
-                    con.log(s);
-                    var opt = document.createElement('option');
-                    opt.value = s.PageId,
-                    opt.innerHTML = s.Name;
-                    bsel.appendChild(opt);
-                }
-                bprt.style.display = 'block';
-                bprt.className = '';
+        for(var i in app.settings) {
+            var s = app.settings[i];
+            con.log(s);
+            var opt = document.createElement('option');
+            opt.value = s.PageId,
+            opt.innerHTML = s.Name;
+            bsel.appendChild(opt);
+        }
+        con.log('length:'+app.settings.length);
+        if (app.settings.length) {
+
+            bprt.style.display = 'block';
+            bprt.className = '';
+        }
     },
     cameraImage:function() {
         app.fetchImage(navigator.camera.PictureSourceType.CAMERA);
@@ -234,7 +238,6 @@ var app = {
         if (!app.username)
             cb(false);
         this.ar('GetBlogs',{username:app.username,password:app.password},function(d) {
-            con.log(d);
             app.settings = d.d;
             cb(d.d);
         },function() {
