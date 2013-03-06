@@ -76,9 +76,14 @@ var app = {
             if (ok)
             {
                 con.log({username:username});
+                var bsel = document.getElementById('blogid');
                 for(var i in app.settings) {
                     var s = app.settings[i];
                     con.log(s);
+                    var opt = document.createElement('option');
+                    opt.value = s.PageId,
+                    opt.innerHTML = s.Name;
+                    bsel.appendChild(opt);
                 }
             }
             else {
