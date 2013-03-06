@@ -111,7 +111,7 @@ var app = {
          var bsel = document.getElementById('blogid');
          bsel.innerHTML = '';
          bsel.addEventListener('change',function() {
-            var csel = app.settings[bsel.selectedIndex-1];
+            var csel = app.settings[bsel.selectedIndex];
             app.currSel = csel;
             app.enumCurrentSettings();
             con.log(csel);
